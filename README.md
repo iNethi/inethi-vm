@@ -2,7 +2,7 @@
 ## Download here
 [Download the Virtual Machine here](https://drive.google.com/drive/folders/18oZQE0x_e755D2oNJ7frNiGfTxlYc2D5?usp=sharing)
 ## Description
-Base Ubuntu Virtual Machine (VM) I built to aid development of docker services to be run on the iNethi network. Find the full [iNethi docker environment](https://github.com/iNethi/docker-master) and find out more about iNethi [here](https://www.inethi.org.za)
+Base Ubuntu Virtual Machine (VM) I built to aid development of docker services to be run on the iNethi network. Find the full iNethi docker environment [here](https://github.com/iNethi/docker-master) and find out more about iNethi [here](https://www.inethi.org.za)
 ## Setup and Usage
 1. Download and import the ova into [Virtual Box](https://www.virtualbox.org)
 2. Start the virtual box and login with username: inethi and password: inethi
