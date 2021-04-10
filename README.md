@@ -22,11 +22,6 @@ Base Ubuntu Virtual Machine (VM) I built to aid development of docker services t
 127.0.0.1       localhost
 255.255.255.255 broadcasthost
 ::1             localhost
-#Added by Docker Desktop
-#To allow the same kube context to work on the host and the container:
-127.0.0.1 kubernetes.docker.internal
-#End of section
-127.0.0.1       myapp.local
 
 Where 192.168.0.190 is the VM's IP address and the URLs of the docker containers are 'splash.internal.local', 'traefik.internal.local', 'netdata.internal.local' and 'smokeping.internal.local'.
 
