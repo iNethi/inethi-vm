@@ -13,3 +13,10 @@ Base Ubuntu Virtual Machine (VM) I built to aid development of docker services t
 7. From your host device add the URL's of the containers to your DNS. For example on Mac or Linux you can do this by editing your /etc/hosts file by running 'sudo nano /etc/hosts' from your terminal (given that you have nano installed). For example add: '192.168.0.190 splash.internal.local' to the file to get the splash page working, where 192.168.0.190 is the VM's IP address.
 8. Ping the VM and the URLs from your host machine's terminal to make sure that your DNS entry is working.
 9. Visit your browser of choice and go to 'http://splash.internal.local' for example to view the docker container's UI.
+10. If the DNS is not running you will not be able to access the internet. The following commands have to be run to get the DNS to resolve: sudo systemctl disable systemd-resolved.service, sudo service systemd-resolved stop, sudo rm /etc/resolv.conf
+
+## TO DO
+1. Update all features to be DNS and Traefik compatible
+2. Add music share
+3. Add the complete build all script
+4. Add instructions on how to setup a VM without downloading the current one
