@@ -1,10 +1,10 @@
 # inethi-vm
 #### Table of Contents
-<https://github.com/keegan337/inethi-vm#download-here#<download the vm>
-<https://github.com/keegan337/inethi-vm#description#<description>
-<https://github.com/keegan337/inethi-vm#setup-and-usage-of-vm#<setup and usage>
-<https://github.com/keegan337/inethi-vm#use-this-code-with-no-vm#<use this code with no vm>
-<https://github.com/keegan337/inethi-vm#to-do#<to do>
+[Download the VM](https://github.com/keegan337/inethi-vm#download-here)
+[Description](https://github.com/keegan337/inethi-vm#description)
+[Setup and Usage](https://github.com/keegan337/inethi-vm#setup-and-usage-of-vm)
+[Use the code with no VM](https://github.com/keegan337/inethi-vm#use-this-code-with-no-vm)
+[TO DO](https://github.com/keegan337/inethi-vm#to-do)
 
 ## Download here
 [Download the Virtual Machine here](https://drive.google.com/drive/folders/18oZQE0x_e755D2oNJ7frNiGfTxlYc2D5?usp=sharing).
