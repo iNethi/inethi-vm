@@ -3,20 +3,26 @@
 [Download the Virtual Machine here](https://drive.google.com/drive/folders/18oZQE0x_e755D2oNJ7frNiGfTxlYc2D5?usp=sharing).
 ## Description
 Base Ubuntu Virtual Machine (VM) I built to aid development of docker services to be run on the iNethi network. Find the full iNethi docker environment [here](https://github.com/iNethi/docker-master) and find out more about iNethi [here](https://www.inethi.org.za).
-## Setup and Usage
-1. Download and import the ova into [Virtual Box](https://www.virtualbox.org).
+## Setup and Usage of VM
+There are two ways to utilise the VM. You can do both at the same time.
+### Use VM as Standalone Dev Envirnment
+1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here.
+2. Start the virtual box and login with username: inethi and password: inethi
+3. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
+4. Open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
+5. Visit your browser of choice and go to any of the URLs found in the .env file, for example 'splash.inethihome.net' to view the docker container's UI.
+### Use Host Machine to View Services
+1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here.
 2. Start the virtual box and login with username: inethi and password: inethi
 3. Open the terminal and run 'ifconfig' to find the IP address of the VM. For example on Mac it may be under enp0s3. Take note of this address.
-4. In the terminal navigate to the 'docker' folder located within the 'dev' folder on the desktop. Do this in the terminal by running: 'cd Desktop/dev/docker/'
-5. Now start up the example docker containers via the terminal by running: './vm_resume.sh'
-6. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of 4 containers. Namely 'inethi-smokeping', 'inethi-splash-nginx', 'inethi-netdata' and 'inethi-traefik'.
-7. From your host device add the URL's of the containers to your DNS. For example on Mac or Linux you can do this by editing your /etc/hosts file by running 'sudo nano /etc/hosts' from your terminal (given that you have nano installed). For example add: '192.168.0.190 splash.internal.local' to the file to get the splash page working, where 192.168.0.190 is the VM's IP address.
-8. Ping the VM and the URLs from your host machine's terminal to make sure that your DNS entry is working.
-9. Visit your browser of choice and go to 'http://splash.internal.local' for example to view the docker container's UI.
-10. If the DNS is not running you will not be able to access the internet. The following commands have to be run to get the DNS to resolve: sudo systemctl disable systemd-resolved.service, sudo service systemd-resolved stop, sudo rm /etc/resolv.conf
-
+4. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
+5. Open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
+6. From your host device add the URL's of the containers to your DNS. For example on Mac or Linux you can do this by editing your /etc/hosts file by running 'sudo nano /etc/hosts' from your terminal (given that you have nano installed). For example add: '192.168.0.190 splash.inethihome.net' to the file to get the splash page working, where 192.168.0.190 is the VM's IP address.
+7. Ping the VM and the URLs from your host machine's terminal to make sure that your DNS entry is working.
+8. Visit your browser of choice and go to 'http://splash.inethihome.net' for example to view the docker container's UI.
+## Use this code with no VM
+1. CLone the repo and run the vm_build_all.sh script. Remember to open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
 ## TO DO
-1. Update all features to be DNS and Traefik compatible
+1. Fix the need to edit resolv.conf on restart
 2. Add music share
-3. Add the complete build all script
-4. Add instructions on how to setup a VM without downloading the current one
+3. Add instructions on how to setup a VM without downloading the current one
