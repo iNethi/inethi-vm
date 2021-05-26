@@ -5,7 +5,7 @@
 Base Ubuntu Virtual Machine (VM) I built to aid development of docker services to be run on the iNethi network. Find the full iNethi docker environment [here](https://github.com/iNethi/docker-master) and find out more about iNethi [here](https://www.inethi.org.za).
 ## Setup and Usage of VM
 There are two ways to utilise the VM. You can do both at the same time.
-### Use VM as Standalone Dev Envirnment
+### Use VM as Standalone Dev Environment
 1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here. Edit the RAM to meet your requirements and make sure your network settings for the VM (this can be edited through the VirtualBox GUI under network) have a bridged adapter connected to the interface that you use to access the internet
 2. Start the virtual box and login with username: inethi and password: inethi
 3. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
