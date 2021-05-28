@@ -16,20 +16,36 @@ There are two ways to utilise the VM. You can do both at the same time.
 1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here. Edit the RAM to meet your requirements and make sure your network settings for the VM (this can be edited through the VirtualBox GUI under network) have a bridged adapter connected to the interface that you use to access the internet
 2. Start the virtual box and login with username: inethi and password: inethi
 3. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
-4. Open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
+4. Check that the VM has received an ip address by clicking on the network icon in the top right and seeing "Wired Connected"
+5. If you are connected open a terminal on the VM and run (otherwise stop here and fix your connection)
+```
+cd ~/Desktop/dev/docker
+./vm_update_ip.sh
+```
 5. Visit your browser of choice and go to any of the URLs found in the .env file, for example 'splash.inethihome.net' to view the docker container's UI.
 ### Use Host Machine to View Services
 1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here. Edit the RAM to meet your requirements and make sure your network settings for the VM (this can be edited through the VirtualBox GUI under network) have a bridged adapter connected to the interface that you use to access the internet
 2. Start the virtual box and login with username: inethi and password: inethi
-3. Open the terminal and run 'ifconfig' to find the IP address of the VM. For example on Mac it may be under enp0s3. Take note of this address.
-4. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
-5. Open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
-6. From your host device add the URL's of the containers to your DNS. For example on Mac or Linux you can do this by editing your /etc/hosts file by running 'sudo nano /etc/hosts' from your terminal (given that you have nano installed). For example add: '192.168.0.190 splash.inethihome.net' to the file to get the splash page working, where 192.168.0.190 is the VM's IP address.
-7. Ping the VM and the URLs from your host machine's terminal to make sure that your DNS entry is working.
+3. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
+4. Check that the VM has received an ip address by clicking on the network icon in the top right and seeing "Wired Connected"
+5. If you are connected open a terminal on the VM and run (otherwise stop here and fix your connection). Make a note of the IP address returned below
+```
+cd ~/Desktop/dev/docker
+./vm_update_ip.sh
+```
+6. Open your network interface settings and set the DNS to the address noted in step 5. On a MAc this is done by selecting the Network icon and Network Preferences an then selecting Advanced
+7. Ping the IP address noted in step 5. and the URLs from your host machine's terminal to make sure that your DNS entry is working.
 8. Visit your browser of choice and go to 'http://splash.inethihome.net' for example to view the docker container's UI.
 ## Use this code with no VM
-1. Clone the repo and run the vm_build_all.sh script. Remember to open and edit the /etc/resolv.conf file on the VM and add 'nameserver 127.0.0.1'. This has to be done every time the system is restarted (THIS IS A TO DO).
+1. Clone the repo 
+```
+github clone https://github.com/iNethi/inethi-vm.git
+```
+2. Run the build script 
+``` 
+cd ./docker-files-in-the-vm
+./vm_build_all.sh script
+``` 
 ## TO DO
-1. Fix the need to edit resolv.conf on restart
-2. Add music share
-3. Add instructions on how to setup a VM without downloading the current one
+1. Add music share
+2. Add instructions on how to setup a VM without downloading the current one
