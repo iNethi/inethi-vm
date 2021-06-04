@@ -7,8 +7,9 @@ services:
     image: jpillora/dnsmasq:latest
     ports:
       - 53:53/udp
+      - "5380:8080"
     volumes:
-      - ./dnsmasq/dnsmasq.conf:/etc/dnsmasq.conf:ro
+      - "${DNSMASQ_VOLUME}/dnsmasq.conf:/etc/dnsmasq.conf:ro"
   traefik:
     image: traefik:v2.4
     container_name: inethi-traefik

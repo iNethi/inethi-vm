@@ -1,5 +1,6 @@
 #!/bin/bash
-
+echo "Creating data mount folder"
+echo
 sudo mkdir /mnt/data/
 
 # customize with your own.
@@ -44,12 +45,16 @@ sudo docker network create --attachable -d bridge inethi-bridge-traefik
 #
 # Build traefik - compulsory docker
 printf "Building Traefik docker ... "
+    sudo mkdir /mnt/data/traefik
+    sudo mkdir /mnt/data/dnsmasq
     cd ./traefik
+    sudo cp ./dnsmasq/dnsmasq.conf /mnt/data/dnsmasq
     ./local_build.sh
     cd ..
 
 [[ "${choices[0]}" ]] && {
     printf "Building nginx(splash) docker ... "
+    sudo mkdir /mnt/data/traefik-nginx
     cd ./nginx-traefik
     ./local_build.sh
     cd ..
