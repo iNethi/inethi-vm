@@ -37,6 +37,7 @@ cd ~/Desktop/dev/docker
 7. Ping the IP address noted in step 5. and the URLs from your host machine's terminal to make sure that your DNS entry is working.
 8. Visit your browser of choice and go to 'http://splash.inethihome.net' for example to view the docker container's UI.
 ## Use this code with no VM
+
 1. Clone the repo
 ```
 github clone https://github.com/keegan337/inethi-vm
@@ -47,6 +48,8 @@ cd ./docker-files-in-the-vm
 ./vm_build_all.sh script
 ./vm_update_ip.sh
 ```
+=======
+
 ## TO DO
 1. Add music share
 2. Add instructions on how to setup a VM without downloading the current one
