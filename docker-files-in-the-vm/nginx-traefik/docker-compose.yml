@@ -12,7 +12,6 @@ services:
       - "traefik.http.routers.splash.rule=Host(`${TRAEFIK_API_RULE}`)"
       - "traefik.http.routers.splash.entrypoints=${TRAEFIK_ENTRYPOINT}"
 
-
 networks:
   default:
     external:

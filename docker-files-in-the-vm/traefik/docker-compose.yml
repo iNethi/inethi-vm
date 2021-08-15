@@ -7,7 +7,7 @@ services:
     image: jpillora/dnsmasq:latest
     ports:
       - 53:53/udp
-      - 5380:8080
+      - "5380:8080"
     volumes:
       - "${DNSMASQ_VOLUME}/dnsmasq.conf:/etc/dnsmasq.conf:ro"
   traefik:
