@@ -1,9 +1,7 @@
 #!/bin/bash
-echo "Creating data mount folder"
-echo
-sudo mkdir /mnt/data/
 
 # customize with your own.
+sudo mkdir /mnt/data
 options=("nginx(splash)")
 
 menu() {
@@ -25,6 +23,10 @@ while menu && read -rp "$prompt" num && [[ "$num" ]]; do
     [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="+"
 done
 
+# # Select domain namec
+# read -p 'Doman name: ' domainName
+
+
 printf "You selected"; msg=" nothing"
 for i in ${!options[@]}; do
     [[ "${choices[i]}" ]] && {
@@ -32,29 +34,36 @@ for i in ${!options[@]}; do
     }
 done
 
-echo "$msg"
-printf "Starting to build dockers ... "
-echo
-
+# echo "$msg"
+# echo You chose Domain Name: $domainName
+# echo
+# printf "Starting to build dockers ... "
+# echo
+# # Send the environmental variables to other scripts
+# echo export inethiDN=$domainName > ./root.conf
 
 printf "Create docker traefik bridge: traefik-bridge ..."
 echo
-#sudo docker network create --attachable -d bridge --subnet=172.19.0.0/16  inethi-bridge-traefik
-#docker network create web
 sudo docker network create --attachable -d bridge inethi-bridge-traefik
-#
+
+printf "Pulling dnsmasq and traefik..."
+echo
+
 # Build traefik - compulsory docker
-printf "Building Traefik docker ... "
-    sudo mkdir /mnt/data/traefik
-    sudo mkdir /mnt/data/dnsmasq
-    cd ./traefik
-    sudo cp ./dnsmasq/dnsmasq.conf /mnt/data/dnsmasq
+printf "Building Traefik and dnsmasq docker ... "
+    cd ./traefik-with-dnsmasq
     ./local_build.sh
     cd ..
 
+# Disable current dns so dnsmasq can bind to 0.0.0.0:53
+printf "Disabling current system dns ..."
+echo
+sudo systemctl disable systemd-resolved.service
+sudo service systemd-resolved stop
+sudo rm /etc/resolv.conf
+
 [[ "${choices[0]}" ]] && {
     printf "Building nginx(splash) docker ... "
-    sudo mkdir /mnt/data/traefik-nginx
     cd ./nginx-traefik
     ./local_build.sh
     cd ..
