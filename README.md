@@ -16,11 +16,12 @@ There are two ways to utilise the VM. You can do both at the same time.
 1. Download and import the ova into [Virtual Box](https://www.virtualbox.org). Find [help](https://www.techrepublic.com/article/how-to-export-virtualbox-virtual-machines-as-appliances/) for that task here. Edit the RAM to meet your requirements and make sure your network settings for the VM (this can be edited through the VirtualBox GUI under network) have a bridged adapter connected to the interface that you use to access the internet
 2. Start the virtual box and login with username: inethi and password: inethi
 3. Check that the docker containers are running via the terminal by running: 'docker ps -a'. This should show you a list of at least 3 containers.
-4. Check that the VM has received an ip address by clicking on the network icon in the top right and seeing "Wired Connected"
-5. If you are connected open a terminal on the VM and run (otherwise stop here and fix your connection)
+4. Update the dnsmasq.conf file in the /mnt/data/dnsmasq folder. Edit this using ``` sudo nano /mnt/data/dnsmasq/dnsmasq.conf ``` or some equivalent and change the 6th line of this file to read as follows:
+  address=/inethihome.net/*the ip address of your server*
+Where the 'the ip address of your server' is found using ``` ifconfig ``` or some equivalent. Find the ip address of the interface that you are connecting to your local network with on screen and use this ip address. This can be 'eth0', 'eth1', 'en0', etc. depending on what OS you are running. This is a vital step as the build script has disabled the default dns settings of the VM in order for the dnsmasq docker container to bind to port 53.
+5. Restart the dnsmasq docker container
 ```
-cd ~/Desktop/dev/docker
-./vm_update_ip.sh
+docker restart inethi-dnsmasq
 ```
 5. Visit your browser of choice and go to any of the URLs found in the .env file, for example 'splash.inethihome.net' to view the docker container's UI.
 ### Use Host Machine to View Services
