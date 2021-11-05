@@ -34,6 +34,7 @@ Where the 'the ip address of your server' is found using ``` ifconfig ``` or som
 5. Open your network interface settings and set the DNS to the address noted in step 5. This can be done in various ways. An example is shown in [this video](https://www.youtube.com/watch?v=EIt8GShQFlQ&ab_channel=KeeganWhite).
 6. Ping the IP address noted in step 5. and the URLs from your host machine's terminal to make sure that your DNS entry is working.
 7. Visit your browser of choice and go to 'http://splash.inethihome.net' for example to view the docker container's UI.
+=======
 ## Use this code with no VM
 This build has been tested on both Ubuntu server and desktop. This is the new architecture that iNethi is adopting. Please make use of it. You can either run the master build script to build all the dockers linked to iNethi or you can build individual dockers that you need. Docker and docker compose need to be installed before running the build script.
 
