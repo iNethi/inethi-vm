@@ -2,7 +2,7 @@
 
 # customize with your own.
 sudo mkdir /mnt/data
-options=("nginx(splash)")
+options=("jellyfin" "keycloak" "nginx(splash)")
 
 menu() {
     echo "iNethi (Traefik) version 0.0.1 builder"
@@ -50,19 +50,44 @@ printf "Pulling dnsmasq and traefik..."
 echo
 
 # Build traefik - compulsory docker
-printf "Building Traefik and dnsmasq docker ... "
+printf "Building Traefik and dnsmasq docker... "
     cd ./traefik-with-dnsmasq
     ./local_build.sh
     cd ..
 
+# Cannot start due to current bind
+printf "EXPECTED FAILIURE"
+echo
 # Disable current dns so dnsmasq can bind to 0.0.0.0:53
-printf "Disabling current system dns ..."
+printf "Disabling current system dns..."
 echo
 sudo systemctl disable systemd-resolved.service
 sudo service systemd-resolved stop
 sudo rm /etc/resolv.conf
 
+printf "Re-building Traefik and dnsmasq docker... "
+  docker restart inethi-dnsmasq
+  cd ./traefik-with-dnsmasq
+  ./local_build.sh
+  cd ..
+
+printf "Disabling current system dns..."
+
 [[ "${choices[0]}" ]] && {
+    printf "Building jellyfin docker ... "
+    cd ./jellyfin-traefik
+    ./local_build.sh
+    cd ..
+}
+
+[[ "${choices[1]}" ]] && {
+    printf "Building keycloak docker ... "
+    cd ./keycloak-traefik
+     ./local_build.sh
+    cd ..
+}
+
+[[ "${choices[2]}" ]] && {
     printf "Building nginx(splash) docker ... "
     cd ./nginx-traefik
     ./local_build.sh
